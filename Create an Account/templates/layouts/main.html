@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--Meta-->
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- /meta -->
+
+  <title>{% block title %}{% endblock %}</title>
+
+  <!--styles-->
+  <link rel="short-icon" href="{{ url_for('static', filename='img/icon.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  <!-- /styles -->
+</head>
+<body>
+  {# Navigation bar #}
+    <nav>
+      <ul>
+        <li {% if request.endpoint == 'main' %} class='active' {% endif %}><a href="{{ url_for('main') }}">home</a></li>
+        <li {% if request.endpoint == 'about' %} class='active' {% endif %}><a href="{{ url_for('about') }}">about</a></li>
+        <li {% if request.endpoint == 'contact' %} class='active' {% endif %}><a href="{{ url_for('contact') }}">contact</a></li>
+        <li {% if request.endpoint == 'signpage' %} class='active' {% endif %}><a href="{{ url_for('signpage') }}">signup/signin</a></li>
+      </ul>
+    </nav>
+  {# end of Navigation bar #}
+
+
+  {# main content #}
+    <main id="content" role="main" class="container">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          {% for message in messages %}
+            {{ message }}
+          {% endfor %}
+        {% endif%}
+      {% endwith%}
+
+      {% block content %}{% endblock %}
+    </main>
+  {# end of main content #}
+
+
+
+  {# footer #}
+    <footer id="footer">
+
+    </footer>
+  {# endfooter #}
+
+    <!--scripts-->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/signpage.js') }}"></script>
+    <!-- /scripts -->
+</body>
+</html>

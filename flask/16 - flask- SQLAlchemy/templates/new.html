@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <h3>Student - Flask SQLAlchemy example </h3>
+    <hr/>
+
+    {%- for message in get_flashed_messages()%}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {%- endfor %}
+    <form action="{{ request.path }}" method="post">
+        <label for="name">Name</label><br/>
+        <input type="text" name="name" placeholder="Name"><br><br>
+        <label for="city">City</label><br/>
+        <input type="text" name="city" placeholder="City"><br><br>
+        <label for="address">Address</label><br/>
+        <input type="text" name="address" placeholder="Address"><br><br>
+        <label for="pin">PIN</label><br/>
+        <input type="text" name="pin" placeholder="PIN" ><br><br>
+        <input type="submit" value="submit">
+    </form>
+    <!--
+        when the http method is detected as POST, the form data is added in the students table and the application 
+        returns to 'show_all.html' homepage showing the added data.
+     -->
+</body>    
+</html>
